@@ -10,4 +10,27 @@ if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
   source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
 fi
 
+bindkey -e
+bindkey '^[[1;9C' forward-word
+bindkey '^[[1;9D' backward-word
+
+bindkey '^[a' beginning-of-line
+bindkey '^[e' end-of-line
+
 # Customize to your needs...
+SAVEHIST=10000
+HISTSIZE=10000
+HISTFILE=~/.zsh_history
+
+export LC_ALL=en_US.UTF-8
+export LANG=en_US.UTF-8
+
+alias ls='ls --hyperlink=auto --group-directories-first --color=auto'
+alias ll='ls -lhA'
+
+# why would you type 'cd dir' if you could just type 'dir'?
+setopt AUTO_CD
+# 10 second wait if you do something that will delete everything.  I wish I'd had this before...
+setopt RM_STAR_WAIT
+
+export KUBECONFIG=`ls -p /home/USER/.kube/config* | tr '\n' ':'`
